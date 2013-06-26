@@ -26,42 +26,59 @@ public class ProductController extends AbstractController{
 	@RequestMapping(method = RequestMethod.GET, value = "/products/list")
 	public ModelAndView listProducts(){
 		ProductJDBC productJdbc = (ProductJDBC)getApplicationContext().getBean("productJDBCTemplate");
-		System.out.println("List Accessed");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/getAllProducts");
 		mav.addObject("products", productJdbc.listProducts());
 		return mav;
+	}	
+	
+	@RequestMapping(method =RequestMethod.GET, value = "/products/editProduct")
+	public ModelAndView editProduct(@RequestParam(value="id") Integer id, @ModelAttribute Product newProduct) {
+		ProductJDBC productJdbc = (ProductJDBC)getApplicationContext().getBean("productJDBCTemplate");
+		String titleMsg, headerMsg, subheaderMsg;
+		
+		if(id != null)
+		{
+			newProduct = productJdbc.getProductById(id);
+			titleMsg = String.format("Editing %s", newProduct.getDescription());
+			headerMsg = String.format("Now Editing Product:", newProduct.getId()
+					, newProduct.getDescription());
+			subheaderMsg = String.format("[%s] %s", newProduct.getId()
+					, newProduct.getDescription());
+		}
+		else
+		{
+			newProduct = new Product();
+			titleMsg = "Adding New Product";
+			headerMsg = titleMsg;
+			subheaderMsg = "";
+		}
+		
+		ModelAndView productModelView = new ModelAndView();
+		productModelView.setViewName("editProduct");
+		productModelView.addObject("product", newProduct);
+		productModelView.addObject("titleMsg", titleMsg);
+		productModelView.addObject("headerMsg", headerMsg);
+		productModelView.addObject("subheaderMsg", subheaderMsg);
+		return productModelView;
 	}
-
-	@RequestMapping(method=RequestMethod.POST, value="/products/list") 
-	public String saveProduct(@RequestParam(value="productId") Integer id, @ModelAttribute Product product){
+	
+	@RequestMapping(method=RequestMethod.POST, value="/products/editProduct") 
+	public String saveProduct(@RequestParam(value="id") Integer id, @ModelAttribute Product product) {
 		product.setId(id);
 		ProductJDBC productJdbc = (ProductJDBC)getApplicationContext().getBean("productJDBCTemplate");
 		productJdbc.update(product);		
-		return "list";
+		return "redirect: list";
 	}
 	
-	@RequestMapping(method =RequestMethod.GET, value = "/products/editProduct")
-	public ModelAndView editProduct(@RequestParam(value="id") Integer id, @ModelAttribute("edit-product") Product productToBeEdited)
-	{
+	@RequestMapping(method=RequestMethod.GET, value="/products/deleteProduct") 
+	public String deleteProduct(@RequestParam(value="id") Integer id){
 		ProductJDBC productJdbc = (ProductJDBC)getApplicationContext().getBean("productJDBCTemplate");
-		productToBeEdited = productJdbc.getProductById(id);
-		return initializeProductModel(productToBeEdited, "editProduct");
+		productJdbc.delete(id);		
+		return "redirect: list";
 	}
 
 	protected ModelAndView handleRequestInternal(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		return null;
-	}
-	
-	private ModelAndView initializeProductModel(Product product, String viewName)
-	{
-		ModelAndView productModelView = new ModelAndView();
-		productModelView.setViewName(viewName);
-		productModelView.addObject("productId", product.getId());
-		productModelView.addObject("description", product.getDescription());
-		productModelView.addObject("size", product.getSize());
-		productModelView.addObject("price", product.getPrice());
-		
-		return productModelView;
 	}
 }

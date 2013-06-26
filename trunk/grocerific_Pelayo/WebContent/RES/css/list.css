@@ -7,21 +7,73 @@ h1
 {
 	margin:0	
 }
-div, table
+div.header, table
 {
-		text-align:center;
-		background-color: rgb(135, 216, 222);
-		border-width:5;
-		border-style:solid;
-		border-color: rgb(88, 133, 52);			
-		background-color: rgb(135, 216, 222);
-		max-width: 33%;
-		margin-left: auto;
-		margin-right: auto;
+	text-align:center;
+	background-color: rgb(135, 216, 222);
+	border-width:5;
+	border-style:solid;
+	border-color: rgb(88, 133, 52);			
+	background-color: rgb(135, 216, 222);
+	max-width: 33%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-down:10px;
+}
+div.add
+{
+	float:right;
+}
+table
+{
+	max-width: 100%;
+	text-align:left;
+}
+tr
+{
+	height:30px;
 }
 td
 {
 	border-bottom-width:3;
 	border-bottom-style:solid;
 	border-bottom-color: rgb(138, 183, 102);
+}
+td.button
+{
+	border-bottom-width:0;
+   
+}
+
+a.button 
+{
+   border-top: 1px solid #e3aeae;
+   background: #9c5454;
+   background: -webkit-gradient(linear, left top, left bottom, from(#d46765), to(#9c5454));
+   background: -webkit-linear-gradient(top, #d46765, #9c5454);
+   background: -moz-linear-gradient(top, #d46765, #9c5454);
+   background: -ms-linear-gradient(top, #d46765, #9c5454);
+   background: -o-linear-gradient(top, #d46765, #9c5454);
+   padding: 5px 10px;
+   -webkit-border-radius: 8px;
+   -moz-border-radius: 8px;
+   border-radius: 8px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 12px;
+   text-decoration: none;
+   vertical-align: middle;
+   margin: 15px;
+   }
+a.button:hover {
+   border-top-color: #732929;
+   background: #732929;
+   color: #ccc;
+   }
+a.button:active {
+   border-top-color: #9c5454;
+   background: #9c5454;
 }
