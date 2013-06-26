@@ -1,0 +1,17 @@
+body
+{
+	color: rgb(142, 87, 86);
+	background-image:url("/grocerific_Pelayo/RES/img/bg.jpg");
+}
+div, table
+{
+	text-align:center;
+	background-color: rgb(135, 216, 222);
+	border-width:5;
+	border-style:solid;
+	border-color: rgb(88, 133, 52);			
+	background-color: rgb(135, 216, 222);
+	max-width: 33%;
+	margin-left: auto;
+	margin-right: auto;
+}

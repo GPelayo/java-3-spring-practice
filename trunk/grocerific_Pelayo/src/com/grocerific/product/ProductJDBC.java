@@ -44,5 +44,4 @@ public class ProductJDBC implements ProductDAO{
 		String updateProduct = String.format("update products set description = %s where id = %s", product.getId(), product.getDescription());
 		jdbcTemplate.update(updateProduct, product.getId(),product.getDescription());
 	}
-
 }
