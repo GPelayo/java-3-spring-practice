@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<title>${titleMsg}</title>
-		<link rel="stylesheet" type="text/css" href="/grocerific_Pelayo/RES/css/edit.css">
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/RES/css/edit.css">
 	</head>
 	<body>
 		<div class="header">

@@ -36,23 +36,31 @@ public class ProductController extends AbstractController{
 	public ModelAndView editProduct(@RequestParam(value="id") Integer id, @ModelAttribute Product newProduct) {
 		ProductJDBC productJdbc = (ProductJDBC)getApplicationContext().getBean("productJDBCTemplate");
 		String titleMsg, headerMsg, subheaderMsg;
+	
+		newProduct = productJdbc.getProductById(id);
+		titleMsg = String.format("Editing %s", newProduct.getDescription());
+		headerMsg = String.format("Now Editing Product:", newProduct.getId()
+				, newProduct.getDescription());
+		subheaderMsg = String.format("[%s] %s", newProduct.getId()
+				, newProduct.getDescription());
 		
-		if(id != null)
-		{
-			newProduct = productJdbc.getProductById(id);
-			titleMsg = String.format("Editing %s", newProduct.getDescription());
-			headerMsg = String.format("Now Editing Product:", newProduct.getId()
-					, newProduct.getDescription());
-			subheaderMsg = String.format("[%s] %s", newProduct.getId()
-					, newProduct.getDescription());
-		}
-		else
-		{
-			newProduct = new Product();
-			titleMsg = "Adding New Product";
-			headerMsg = titleMsg;
-			subheaderMsg = "";
-		}
+		ModelAndView productModelView = new ModelAndView();
+		productModelView.setViewName("editProduct");
+		productModelView.addObject("product", newProduct);
+		productModelView.addObject("titleMsg", titleMsg);
+		productModelView.addObject("headerMsg", headerMsg);
+		productModelView.addObject("subheaderMsg", subheaderMsg);
+		return productModelView;
+	}
+	
+	@RequestMapping(method =RequestMethod.GET, value = "/products/editProduct")
+	public ModelAndView editProduct(@ModelAttribute Product newProduct) {
+		ProductJDBC productJdbc = (ProductJDBC)getApplicationContext().getBean("productJDBCTemplate");
+		String titleMsg, headerMsg, subheaderMsg;
+		newProduct = new Product();
+		titleMsg = "Adding New Product";
+		headerMsg = titleMsg;
+		subheaderMsg = "";
 		
 		ModelAndView productModelView = new ModelAndView();
 		productModelView.setViewName("editProduct");
