@@ -5,12 +5,14 @@
 <html>
 <head>
 	<title>Grocerific Product List</title>
-	<link rel="stylesheet" type="text/css" href="/grocerific_Pelayo/RES/css/list.css"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/RES/css/list.css"/>
 </head>
 <body>
 
 <div class="header" style="margin-bottom: 10px;"><h1>Product Inventory</h1></div>
-
+	<div class="options">
+		<a class="button" href="editProduct">Add</a>
+	</div>
 	<div class="list">
 		<table>
 			<tr style="font-weight:bold; text-align:center" >
@@ -32,8 +34,6 @@
 			</c:forEach>	
 		</table>
 	</div>
-	<div class="options">
-		<a class="button" href="editProduct">Edit</a>
-	</div>
+	
 </body>
 </html>
