@@ -42,8 +42,7 @@ public class InventoryController extends AbstractController{
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value="/Inventory/editInventory") 
-	public String saveEditedInventory(@RequestParam(value="id") Integer id, @ModelAttribute Inventory inventory) {
-		inventory.setProduct_id(id);
+	public String saveEditedInventory(@ModelAttribute Inventory inventory) {
 		InventoryJDBC inventoryJdbc = (InventoryJDBC)getApplicationContext().getBean("inventoryJDBCTemplate");
 		inventoryJdbc.update(inventory);		
 		return "redirect:list";
@@ -65,7 +64,7 @@ public class InventoryController extends AbstractController{
 	@RequestMapping(method = RequestMethod.POST, value="/Inventory/addInventory") 
 	public String saveAddedInventory(@ModelAttribute Inventory inventory) {
 		InventoryJDBC inventoryJdbc = (InventoryJDBC)getApplicationContext().getBean("inventoryJDBCTemplate");
-		inventoryJdbc.createNewInventory(inventory.getProductId(), inventory.getQuanity());
+		inventoryJdbc.createNewInventory(inventory.getProductId(), inventory.getQuantity());
 		return "redirect:list";
 	}	
 	

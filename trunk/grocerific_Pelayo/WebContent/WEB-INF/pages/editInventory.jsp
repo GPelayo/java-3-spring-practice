@@ -18,7 +18,7 @@
 						Product ID
 					</td>
 					<td>
-						<form:input path="productId"/>
+						<form:input size="5px" path="productId"/>
 					</td>
 				</tr>
 				<tr>
@@ -26,7 +26,7 @@
 						Quantity
 					</td>
 					<td>
-						<form:input size="10px" path="quanity"/>
+						<form:input size="5px" path="quantity"/>
 					</td>
 				</tr>
 				<tr>

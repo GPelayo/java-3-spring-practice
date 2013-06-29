@@ -14,22 +14,21 @@
 	</h1>
 </div>
 <div class="addButton">
-	<a class="button" href="addInventory">Add Order</a>
+	<a class="button" href="../addInventory">Add Inventory</a>
 </div>
 <div class="list">
 	<table>
 		<tr style="font-weight:bold; text-align:center">
 			<td>Product ID</td>
-			<td>Date</td>
-			<td>Total</td>
+			<td>Quantity</td>
 			<td colspan="2">Action<td>
 		</tr>
-		<c:forEach items="${inventories}" var="iOrder">
+		<c:forEach items="${inventories}" var="iInventories">
 			<tr>
 				<td>${iInventories.productId}</td>
 				<td>${iInventories.quantity}</td>
-				<td class="button"><a class="button" href="editInventory?id=${iInventories.id}">Edit</a></td>
-				<td class="button"><a class="button" href="deleteInventory?id=${iInventories.id}">Delete</a></td>
+				<td class="button"><a class="button" href="editInventory?id=${iInventories.productId}">Edit</a></td>
+				<td class="button"><a class="button" href="deleteInventory?id=${iInventories.productId}">Delete</a></td>
 			</tr>
 		</c:forEach>	
 	</table>
