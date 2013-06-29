@@ -7,6 +7,13 @@ h1
 {
 	margin:0	
 }
+div.addButton
+{	
+	margin:20px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align:center;
+}
 div.header, table
 {
 	text-align:center;
@@ -19,10 +26,6 @@ div.header, table
 	margin-left: auto;
 	margin-right: auto;
 	margin-down:10px;
-}
-div.add
-{
-	float:right;
 }
 table
 {
@@ -41,8 +44,7 @@ td
 }
 td.button
 {
-	border-bottom-width:0;
-   
+	border-bottom-width:0;   
 }
 
 a.button 

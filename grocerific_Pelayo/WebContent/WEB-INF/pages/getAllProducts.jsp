@@ -7,15 +7,18 @@
 	<title>Grocerific Product List</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/RES/css/list.css"/>
 </head>
-<body>
-
-<div class="header" style="margin-bottom: 10px;"><h1>Product Inventory</h1></div>
-	<div class="options">
-		<a class="button" href="editProduct">Add</a>
+<body>	
+	<div class="header" style="margin-bottom:10px;">
+		<h1 style="margin:0">
+			Product List
+		</h1>
+	</div>
+	<div class="addButton">
+		<a class="button" href="addProduct">Add Product</a>
 	</div>
 	<div class="list">
 		<table>
-			<tr style="font-weight:bold; text-align:center" >
+			<tr style="font-weight:bold; text-align:center">
 				<td>ID</td>
 				<td>Description</td>
 				<td>Size</td>
@@ -34,6 +37,5 @@
 			</c:forEach>	
 		</table>
 	</div>
-	
 </body>
 </html>
