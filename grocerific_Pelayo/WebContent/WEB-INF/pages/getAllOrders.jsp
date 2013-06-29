@@ -14,7 +14,7 @@
 	</h1>
 </div>
 <div class="addButton">
-	<a class="button" href="addOrder">Add Order</a>
+	<a class="button" href="../addOrder">Add Order</a>
 </div>
 <div class="list">
 	<table>

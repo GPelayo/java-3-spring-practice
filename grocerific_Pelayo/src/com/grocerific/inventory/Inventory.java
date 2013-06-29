@@ -2,19 +2,19 @@ package com.grocerific.inventory;
 
 public class Inventory {
 	private int productId;
-	private int quanity;
+	private int quantity;
 	
 	public int getProductId() {
 		return productId;
 	}
-	public void setProduct_id(int product_id) {
-		this.productId = product_id;
+	public void setProductId(int ProductId) {
+		this.productId = ProductId;
 	}
-	public int getQuanity() {
-		return quanity;
+	public int getQuantity() {
+		return quantity;
 	}
-	public void setQuanity(int quanity) {
-		this.quanity = quanity;
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 }
 
