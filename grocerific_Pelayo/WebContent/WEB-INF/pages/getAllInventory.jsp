@@ -14,7 +14,7 @@
 	</h1>
 </div>
 <div class="addButton">
-	<a class="button" href="../addInventory">Add Inventory</a>
+	<a class="button" href="addInventory">Add Inventory</a>
 </div>
 <div class="list">
 	<table>

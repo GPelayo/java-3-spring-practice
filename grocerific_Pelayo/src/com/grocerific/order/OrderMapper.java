@@ -9,10 +9,10 @@ public class OrderMapper implements RowMapper<Order>{
 
 	@Override
 	public Order mapRow(ResultSet resultSet, int rowNumber) throws SQLException {
-		Order Order = new Order();
-		Order.setId(resultSet.getInt("id"));
-		Order.setOrderDate(resultSet.getString("order_date"));
-		Order.setTotal(resultSet.getFloat("total"));
-		return Order;
+		Order order = new Order();
+		order.setId(resultSet.getInt("id"));
+		order.setOrderDate(resultSet.getString("order_date"));
+		order.setTotal(resultSet.getFloat("total"));
+		return order;
 	}
 }

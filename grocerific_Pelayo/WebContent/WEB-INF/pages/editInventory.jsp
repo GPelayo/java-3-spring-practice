@@ -33,7 +33,7 @@
 					<td colspan="2" style="text-align:center;border-bottom-width:0">							
 						<input class="button" type="submit" value="Save"/>	
 					</td>
-				</tr>			
+				</tr>
 			</table>
 		</form:form>
 	</body>

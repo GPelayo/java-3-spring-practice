@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
-import com.grocerific.orderItem.*;
+import com.grocerific.orderitem.*;
 
 @Controller
 public class OrderItemController extends AbstractController{
@@ -20,14 +20,14 @@ public class OrderItemController extends AbstractController{
 		OrderItemJDBC orderItemJdbc = (OrderItemJDBC)getApplicationContext().getBean("orderItemJDBCTemplate");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/getAllOrderItems");
-		mav.addObject("orderItems", orderItemJdbc.listOrderItem());
+		mav.addObject("orderItems", orderItemJdbc.listOrderItems());
 		return mav;
 	}	
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/OrderItems/editOrderItem")
 	public ModelAndView editOrderItem(@RequestParam(value="orderID") Integer orderId, @RequestParam(value="lineNumber") Integer lineNumber, @ModelAttribute OrderItem newOrderItem) {
 		OrderItemJDBC orderItemJdbc = (OrderItemJDBC)getApplicationContext().getBean("orderItemJDBCTemplate");
-		newOrderItem = orderItemJdbc.getOrderItemById(orderId, lineNumber);
+		newOrderItem = orderItemJdbc.getOrderById(orderId, lineNumber);
 		String titleMsg = String.format("Editing Order Item %s", newOrderItem.getProductId())
 			  ,headerMsg = String.format("Now Editing Order Item %s", newOrderItem.getProductId());
 		ModelAndView orderItemModelView = new ModelAndView();	
@@ -61,9 +61,10 @@ public class OrderItemController extends AbstractController{
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value="/OrderItems/addOrderItem") 
-	public String saveAddedOrderItem(@ModelAttribute OrderItem orderItem) {
+	public String saveAddedOrderItem(@ModelAttribute OrderItem orderItem) {		
 		OrderItemJDBC orderItemJdbc = (OrderItemJDBC)getApplicationContext().getBean("orderItemJDBCTemplate");
-		orderItemJdbc.createNewOrderItem(orderItem.getOrderId(), orderItem.getLineNumber(),orderItem.getProductId(), orderItem.getQuantity(), orderItem.getUnitPrice());
+		orderItemJdbc.createNewOrder(orderItem);
+		//orderItemJdbc.createNewOrder(orderItem)(orderItem.getOrderId(), orderItem.getLineNumber(),orderItem.getProductId(), orderItem.getQuantity(), orderItem.getUnitPrice());
 		return "redirect:list";
 	}	
 	
