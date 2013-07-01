@@ -35,8 +35,8 @@ xsi:schemaLocation="
 	</bean>
 	<bean id="inventoryJDBCTemplate" class="com.grocerific.inventory.InventoryJDBC">
 		<property name="dataSource" ref="dataSource" />
-	</bean><!--
-	<bean id="orderitemsJDBCTemplate" class="com.grocerific.product.OrderItemsJDBC">
+	</bean>
+	<bean id="orderItemJDBCTemplate" class="com.grocerific.orderItem.OrderItemJDBC">
 		<property name="dataSource" ref="dataSource" />
-	</bean>-->
+	</bean>
 </beans>

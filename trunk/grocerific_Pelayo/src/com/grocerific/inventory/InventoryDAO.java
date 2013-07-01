@@ -12,7 +12,7 @@ public interface InventoryDAO {
 
 	public Inventory getInventoryById(Integer id);
 
-	public List<Inventory> listInventorys();
+	public List<Inventory> listInventory();
 
 	public void delete(Integer id);
 

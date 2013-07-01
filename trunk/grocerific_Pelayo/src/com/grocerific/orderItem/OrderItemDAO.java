@@ -1,20 +1,20 @@
-package com.grocerific.order;
+package com.grocerific.orderItem;
 
 import java.util.List;
 
 import javax.sql.DataSource;
 
-public interface OrderDAO {
+public interface OrderItemDAO {
 
 	public void setDataSource(DataSource ds);
 
 	public void createNewOrder(String orderDate, float total);
 
-	public Order getOrderById(Integer id);
+	public OrderItem getOrderById(Integer id);
 
-	public List<Order> listOrders();
+	public List<OrderItem> listOrders();
 
 	public void delete(Integer id);
 
-	public void update(Order order);
+	public void update(OrderItem order);
 }
