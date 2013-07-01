@@ -15,13 +15,12 @@ public class OrderItemJDBC implements OrderItemDAO{
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
-	public void createNewOrder(OrderItem orderItem) {
+	public void createNewOrderItem(int orderItem, int lineNumber, int productId, int quantity, float unitPrice) {
 		String insertIntoOrders = "Insert into orderitems (order_id, line_number, product_id, quantity, unit_price) values (?, ?, ?, ?, ?)";
-		jdbcTemplate.update(insertIntoOrders, orderItem.getLineNumber(), orderItem.getOrderId(), orderItem.getProductId()
-											, orderItem.getQuantity(), orderItem.getUnitPrice());
+		jdbcTemplate.update(insertIntoOrders, orderItem, lineNumber, productId, quantity, unitPrice);
 	}
 
-	public OrderItem getOrderById(Integer orderId, Integer lineNumber) {
+	public OrderItem getOrderItemById(Integer orderId, Integer lineNumber) {
 		String selectOrderById = String.format("Select * from orderitems where order_id = ? AND line_number=?", orderId, lineNumber);
 		OrderItem order = jdbcTemplate.queryForObject(selectOrderById, new Object[]{orderId, lineNumber}, new OrderItemMapper());
 		return order;
@@ -40,8 +39,8 @@ public class OrderItemJDBC implements OrderItemDAO{
 
 	@Override
 	public void update(OrderItem orderItem) {
-		String updateOrder = String.format("UPDATE orderitems SET product_id=?, quanity=?, unit_price=? where order_id=? AND line_number=?");
-		jdbcTemplate.update(updateOrder, orderItem.getProductId(), orderItem.getQuantity(), orderItem.getQuantity(), orderItem.getUnitPrice()
-									   , orderItem.getOrderId(), orderItem.getClass());
+		String updateOrder = String.format("UPDATE orderitems SET product_id=?, quantity=?, unit_price=? where order_id=? AND line_number=?");
+		jdbcTemplate.update(updateOrder, orderItem.getProductId(), orderItem.getQuantity(), orderItem.getUnitPrice()
+									   , orderItem.getOrderId(), orderItem.getLineNumber());
 	}
 }

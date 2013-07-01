@@ -8,9 +8,9 @@ public interface OrderItemDAO {
 
 	public void setDataSource(DataSource ds);
 
-	public void createNewOrder(OrderItem orderItem);
+	public void createNewOrderItem(int orderItem, int lineNumber, int productId, int quantity, float unitPrice);
 
-	public OrderItem getOrderById(Integer orderId, Integer lineNumber);
+	public OrderItem getOrderItemById(Integer orderId, Integer lineNumber);
 
 	public List<OrderItem> listOrderItems();
 
