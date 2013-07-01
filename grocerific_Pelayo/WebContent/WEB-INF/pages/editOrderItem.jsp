@@ -11,22 +11,46 @@
 			<h3 style="margin:0;">${headerMsg}</h3>
 			<h2 style="margin:2;">${subheaderMsg}</h2>
 		 </div>
-		<form:form commandName="order" method="POST">
+		<form:form commandName="orderItem" method="POST">
 			<table style="text-align:left;">	
 				<tr>
 					<td>
-						Order Date <br/>(YYYY-MM-DD)
+						Order ID
 					</td>
 					<td>
-						<form:input path="orderDate"/>
+						<form:input size="5px" path="orderId"/>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						total
+						Line Number
 					</td>
 					<td>
-						<form:input size="10px" path="total"/>
+						<form:input size="5px" path="lineNumber"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Product ID
+					</td>
+					<td>
+						<form:input size="5px" path="productId"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Quantity
+					</td>
+					<td>
+						<form:input size="5px" path="quantity"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Unit Price
+					</td>
+					<td>
+						<form:input size="5px" path="unitPrice"/>
 					</td>
 				</tr>
 				<tr>

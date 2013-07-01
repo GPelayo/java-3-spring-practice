@@ -27,7 +27,7 @@ public class InventoryJDBC implements InventoryDAO{
 		return inventory;
 	}
 
-	public List<Inventory> listInventorys() {
+	public List<Inventory> listInventory() {
 		String selectAllInventorys = "SELECT * from inventory ORDER BY product_id DESC";
 		List<Inventory> inventory = jdbcTemplate.query(selectAllInventorys, new InventoryMapper());
 		return inventory;

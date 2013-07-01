@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
 import com.grocerific.inventory.*;
-
 @Controller
 public class InventoryController extends AbstractController{
 	
@@ -20,7 +19,7 @@ public class InventoryController extends AbstractController{
 		InventoryJDBC inventoryJdbc = (InventoryJDBC)getApplicationContext().getBean("inventoryJDBCTemplate");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/getAllInventory");
-		mav.addObject("inventories", inventoryJdbc.listInventorys());
+		mav.addObject("inventories", inventoryJdbc.listInventory());
 		return mav;
 	}	
 	
