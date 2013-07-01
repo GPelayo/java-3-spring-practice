@@ -25,9 +25,9 @@ public class OrderItemController extends AbstractController{
 	}	
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/OrderItems/editOrderItem")
-	public ModelAndView editOrderItem(@RequestParam(value="orderID") Integer orderId, @RequestParam(value="lineNumber") Integer lineNumber, @ModelAttribute OrderItem newOrderItem) {
+	public ModelAndView editOrderItem(@RequestParam(value="orderId") Integer orderId, @RequestParam(value="lineNumber") Integer lineNumber, @ModelAttribute OrderItem newOrderItem) {
 		OrderItemJDBC orderItemJdbc = (OrderItemJDBC)getApplicationContext().getBean("orderItemJDBCTemplate");
-		newOrderItem = orderItemJdbc.getOrderById(orderId, lineNumber);
+		newOrderItem = orderItemJdbc.getOrderItemById(orderId, lineNumber);
 		String titleMsg = String.format("Editing Order Item %s", newOrderItem.getProductId())
 			  ,headerMsg = String.format("Now Editing Order Item %s", newOrderItem.getProductId());
 		ModelAndView orderItemModelView = new ModelAndView();	
@@ -48,7 +48,7 @@ public class OrderItemController extends AbstractController{
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/OrderItems/addOrderItem")
-	public ModelAndView editOrderItem(@ModelAttribute OrderItem newOrderItem) {
+	public ModelAndView editAddOrderItem(@ModelAttribute OrderItem newOrderItem) {
 		newOrderItem = new OrderItem();
 		
 		ModelAndView orderItemModelView = new ModelAndView();
@@ -63,8 +63,8 @@ public class OrderItemController extends AbstractController{
 	@RequestMapping(method = RequestMethod.POST, value="/OrderItems/addOrderItem") 
 	public String saveAddedOrderItem(@ModelAttribute OrderItem orderItem) {		
 		OrderItemJDBC orderItemJdbc = (OrderItemJDBC)getApplicationContext().getBean("orderItemJDBCTemplate");
-		orderItemJdbc.createNewOrder(orderItem);
-		//orderItemJdbc.createNewOrder(orderItem)(orderItem.getOrderId(), orderItem.getLineNumber(),orderItem.getProductId(), orderItem.getQuantity(), orderItem.getUnitPrice());
+		orderItemJdbc.createNewOrderItem(orderItem.getOrderId(), orderItem.getLineNumber(), orderItem.getProductId(), orderItem.getQuantity(), orderItem.getUnitPrice());
+
 		return "redirect:list";
 	}	
 	
