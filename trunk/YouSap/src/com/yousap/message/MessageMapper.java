@@ -12,7 +12,7 @@ public class MessageMapper implements RowMapper<Message>{
 		Message message = new Message();
 		
 		message.setMessageID(resultSet.getInt("messageID"));
-		message.setMessageText(resultSet.getInt("messageText"));
+		message.setMessageText(resultSet.getString("messageText"));
 		return message;
 	}
 }
