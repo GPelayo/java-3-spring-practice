@@ -11,7 +11,7 @@
 <body>	
 <div class="header" style="margin-bottom:10px;">
 	<h1 style="margin:0">
-		Product Inventory List
+		Yousap
 	</h1>
 </div>
 <div>
@@ -30,7 +30,7 @@
 					Message
 				</td>
 				<td>
-					<form:input size="5px" path="messageText"/>
+					<form:input size="10px" path="messageText"/>
 				</td>
 			</tr>
 			<tr>
@@ -48,10 +48,10 @@
 			<td>Message</td>
 			<td colspan="2">Action<td>
 		</tr>
-		<c:forEach items="${messages}" var="iMessage">
+		<c:forEach items="${messageList}" var="iMessage">
 			<tr>
-				<td>${iMessages.messageID}</td>
-				<td>${iMessages.messageText}</td>
+				<td>${iMessage.messageID}</td>
+				<td>${iMessage.messageText}</td>
 				<!-- 
 					<td class="button"><a class="button" href="editInventory?id=${iMessages.productId}">Edit</a></td>
 				  -->

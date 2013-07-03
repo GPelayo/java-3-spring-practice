@@ -2,9 +2,9 @@ package com.yousap.message;
 
 public class Message {
 	private Integer messageID;
-	private Integer messageText;
+	private String messageText;
 	private Integer productID;
-	private Integer username;
+	private String username;
 	private float parentMessageID;
 	
 	public Integer getMessageID() {
@@ -13,10 +13,10 @@ public class Message {
 	public void setMessageID(Integer messageID) {
 		this.messageID = messageID;
 	}
-	public Integer getMessageText() {
+	public String getMessageText() {
 		return messageText;
 	}
-	public void setMessageText(Integer messageText) {
+	public void setMessageText(String messageText) {
 		this.messageText = messageText;
 	}
 	public Integer getProductID() {
@@ -25,10 +25,10 @@ public class Message {
 	public void setProductID(Integer productID) {
 		this.productID = productID;
 	}
-	public Integer getUsername() {
+	public String getUsername() {
 		return username;
 	}
-	public void setUsername(Integer username) {
+	public void setUsername(String username) {
 		this.username = username;
 	}
 	public float getParentMessageID() {
@@ -37,5 +37,7 @@ public class Message {
 	public void setParentMessageID(float parentMessageID) {
 		this.parentMessageID = parentMessageID;
 	}
+	
+	
 }
 

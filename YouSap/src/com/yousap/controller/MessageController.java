@@ -24,19 +24,21 @@ public class MessageController extends AbstractController{
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/topic")
-	public ModelAndView listMessages(){
+	public ModelAndView listMessages(@ModelAttribute Message message){
 		//MessageJDBC messageJdbc = (MessageJDBC)getApplicationContext().getBean("messageJDBCTemplate");
+		//TODO Replace to Message once DB is implemented
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/topic");
-		mav.addObject("messages", messageList /*messageJdbc.listMessages()*/);
+		mav.setViewName("topic");
+		mav.addObject("messageList", messageList /*messageJdbc.listMessages()*/);
+		mav.addObject("message", message);
 		return mav;
 	}
-	
-	@RequestMapping(method = RequestMethod.POST, value="/addMessage") 
-	public String saveAddedMessage(@RequestParam(value="message") Message message) {		
+	//TODO Replace to Message once DB is implemented
+	@RequestMapping(method = RequestMethod.POST, value="/topic") 
+	public String saveAddedMessage(@ModelAttribute Message message) {		
 		//MessageJDBC messageJdbc = (MessageJDBC)getApplicationContext().getBean("messageJDBCTemplate");
 		messageList.add(message);
-		return "redirect:list";
+		return "redirect:topic";
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value="/deleteMessage") 
@@ -53,11 +55,11 @@ public class MessageController extends AbstractController{
 			{
 				message = iMessage;
 			}
-		}	
+		}
 		
 		messageList.remove(message);
 		//@
-		return "redirect:list";
+		return "redirect:topic";
 	}
 
 	protected ModelAndView handleRequestInternal(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
