@@ -41,7 +41,7 @@ public class MessageController extends AbstractController{
 		return "redirect:topic";
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value="/deleteMessage") 
+	@RequestMapping(method = RequestMethod.POST, value="/delete") 
 	public String deleteMessage(@RequestParam(value="messageID") Integer messageID, @RequestParam(value="lineNumber") Integer lineNumber){
 		//MessageJDBC messageJdbc = (MessageJDBC)getApplicationContext().getBean("messageJDBCTemplate");
 		//messageJdbc.delete(orderId, lineNumber);
