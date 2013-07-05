@@ -46,9 +46,10 @@ public class MessageController extends AbstractController{
 		MessageJDBC messageJdbc = (MessageJDBC)getApplicationContext().getBean("messageJDBCTemplate");
 		
 		lastUsedName = message.getUsername();
+		message.setNestLevel(0);
 		//message.setMessageID(postCount); //TODO Delete When DB works
 		message.setDate(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(Calendar.getInstance().getTime()));
-		messageJdbc.createNewMessage(message.getMessageID(), message.getUsername(), message.getMessageText(), message.getDate());
+		messageJdbc.createNewMessage(message);
 		postCount++; //TODO When DB is perfected
 		return "redirect:topic";
 	}

@@ -1,6 +1,6 @@
 package com.yousap.message;
-import java.util.List;
 
+import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -9,15 +9,15 @@ public class MessageJDBC /*implements MessageDAO*/{
 	
 	private DataSource dataSource;
 	private JdbcTemplate jdbcTemplate;
-	
+			
 	public void setDataSource(DataSource ds) {
 		dataSource = ds;
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
-	public void createNewMessage(int message, String username, String message_content, String message_date) {
-		String insertIntoOrders = "Insert into message (message_id, username, message_content, message_date) values (?, ?, ?, ?)";
-		jdbcTemplate.update(insertIntoOrders, message, username, message_content, message_date);
+	public void createNewMessage(Message newMessage) {
+		String insertIntoOrders = "Insert into message (username, message_content, message_date, parent_message_id) values (?, ?, ?, ?)";		
+		jdbcTemplate.update(insertIntoOrders, newMessage.getUsername(), newMessage.getMessageText(), newMessage.getDate(), newMessage.getParentMessageID());
 	}
 
 	public Message getMessageById(Integer message_id) {
@@ -27,7 +27,7 @@ public class MessageJDBC /*implements MessageDAO*/{
 	}
 
 	public List<Message> listMessages() {
-		String selectAllMessages = "SELECT * from message BY message_id DESC";
+		String selectAllMessages = "SELECT * from message ORDER BY message_id ASC";
 		List<Message> messages = jdbcTemplate.query(selectAllMessages, new MessageMapper());
 		return messages;
 	}
