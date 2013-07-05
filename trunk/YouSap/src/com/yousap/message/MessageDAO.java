@@ -8,13 +8,13 @@ public interface MessageDAO {
 
 	public void setDataSource(DataSource ds);
 
-	public void createNewMessage(Message orderItem);
+	public void createNewMessage(String username, String message_content);
 	
-	public Message getMessageById(Integer orderId, Integer lineNumber);
+	public Message getMessageById(Integer message_id);
 
 	public List<Message> listMessages();
 
-	public void delete(Integer orderId, Integer lineNumber);
+	public void delete(Integer message_id);
 
-	public void update(Message orderItem);
+	public void update(Message message);
 }
