@@ -7,6 +7,6 @@
 <title>ERROR</title>
 </head>
 <body>
-<h2>FUCK THE WEBMASTER!</h2>
+<h2>Whoa, you got an error there.</h2>
 </body>
 </html>

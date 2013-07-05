@@ -1,6 +1,6 @@
-package com.yousap.controller;
+package com.yousap.exception;
 
-public class BlankFieldException extends RuntimeException {
+public class InvalidInputException extends RuntimeException {
 	
 	/**
 	 * 
@@ -8,7 +8,7 @@ public class BlankFieldException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 	private String exceptionMsg;
 	 
-	public BlankFieldException(String exceptionMsg) {
+	public InvalidInputException(String exceptionMsg) {
 		this.exceptionMsg = exceptionMsg;
 	}
 	

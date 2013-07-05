@@ -37,12 +37,9 @@ public class MessageJDBC /*implements MessageDAO*/{
 		jdbcTemplate.update(deleteMessages, message_id);
 	}
 	
-	/*
-	@Override
 	public void update(Message message) {
-		String updateOrder = String.format("UPDATE orderitems SET product_id=?, quantity=?, unit_price=? where order_id=? AND line_number=?");
-		jdbcTemplate.update(updateOrder, message.getProductId(), message.getQuantity(), message.getUnitPrice()
-									   , message.getOrderId(), message.getLineNumber());
+		String updateOrder = String.format("UPDATE message SET message_content=?, message_date=?, parent_message_id=?, username=? where message_id=?");
+		jdbcTemplate.update(updateOrder, message.getMessageText(), message.getDate()
+									   , message.getParentMessageID(), message.getUsername(), message.getMessageID());
 	}
-	*/
 }

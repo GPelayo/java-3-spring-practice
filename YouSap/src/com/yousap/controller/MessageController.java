@@ -14,96 +14,94 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.ui.ModelMap;
 
+import com.yousap.exception.InvalidInputException;
 import com.yousap.message.*;
 
 @Controller
-public class MessageController extends AbstractController{
-	//ArrayList<Message> messageList = new ArrayList<Message>();
-	String lastUsedName = "";
-	int postCount = 0;
-	
+public class MessageController extends AbstractController{	
 	@RequestMapping(method = RequestMethod.GET, value = "/*")
-	public String show404(){
+	public String show404() {
 		//TODO Redirect to 404 page Here
 		return "redirect:topic";
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/topic")
-	public ModelAndView listMessages(@ModelAttribute Message message){
+	public ModelAndView listMessages(@ModelAttribute Message message) {
 		MessageJDBC messageJdbc = (MessageJDBC)getApplicationContext().getBean("messageJDBCTemplate");
-		message.setUsername(lastUsedName);
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("topic");
-		mav.addObject("messageList", /*messageList*/ messageJdbc.listMessages());
+		
+		message.setParentMessageID(-1);
+		mav.addObject("messageList", messageJdbc.listMessages());
 		mav.addObject("message", message);
 		return mav;
 	}
 	
+	@RequestMapping(method = RequestMethod.GET, value = "/highlight")
+	public ModelAndView highlightMessage(@RequestParam(value="parentID") Integer parentID, @ModelAttribute Message message) {
+		MessageJDBC messageJdbc = (MessageJDBC)getApplicationContext().getBean("messageJDBCTemplate");
+		ModelAndView mav = new ModelAndView();
+		
+		message.setParentMessageID(-1);
+		mav.setViewName("topic");
+		mav.addObject("messageList", messageJdbc.listMessages());
+		mav.addObject("message", message);
+		mav.addObject("highlightID", parentID);
+		return mav;
+	}
+	
 	@RequestMapping(method = RequestMethod.POST, value="/add") 
-	@ExceptionHandler({BlankFieldException.class})
-	public String add (@ModelAttribute("Yousap")Message message, ModelMap model) 
-	{
-		if(message.getMessageText().length() == 0 ) {
-			throw new BlankFieldException ("Textfield was blank");
-			}
-		else{
-			model.addAttribute("MessageText", message.getMessageText());
-			}
-	
-		return "redirect:ERROR";
-	
-	
-	}
-	
-			
 	public String saveAddedMessage(@ModelAttribute Message message) {		
-		//MessageJDBC messageJdbc = (MessageJDBC)getApplicationContext().getBean("messageJDBCTemplate");
-		
-		MessageJDBC messageJdbc = (MessageJDBC)getApplicationContext().getBean("messageJDBCTemplate");
-		
-		lastUsedName = message.getUsername();
-		message.setNestLevel(0);
-		//message.setMessageID(postCount); //TODO Delete When DB works
-		
-		message.setDate(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(Calendar.getInstance().getTime()));
-		messageJdbc.createNewMessage(message);
-		postCount++; //TODO When DB is perfected
-		
-		//@ExceptionHandler({Exceptions.class})
-		//public String add(@ModelAttribute)
-		
-		return "redirect:topic";
-	}
-	
-	
-	@RequestMapping(method = RequestMethod.POST, value="/delete") 
-	public String deleteMessage(@RequestParam(value="messageID") Integer messageID, @RequestParam(value="lineNumber") Integer lineNumber){
-		MessageJDBC messageJdbc = (MessageJDBC)getApplicationContext().getBean("messageJDBCTemplate");
-		messageJdbc.delete(messageID);
-		
-		//TODO Delete From This to @ once JDBC is made
-		/*
-		Message message = new Message();
-		
-		for(Message iMessage : messageList)
+		if(message.getMessageText().length() <= 0)
 		{
-			if(iMessage.getMessageID().equals(messageID))
-			{
-				message = iMessage;
-			}
+			throw new InvalidInputException("Invalid Input Blank Message");
+		}
+		if(message.getUsername().length() <= 0)
+		{
+			message.setUsername("Nameless");
 		}
 		
-		messageList.remove(message);
-		//@
-		 */
+		MessageJDBC messageJdbc = (MessageJDBC)getApplicationContext().getBean("messageJDBCTemplate");
+		message.setNestLevel(0);
+		message.setDate(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(Calendar.getInstance().getTime()));
+		messageJdbc.createNewMessage(message);
+		return "redirect:topic#bottom";
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value="edit") 
+	public ModelAndView showEditView(@RequestParam(value="id") Integer messageID, @ModelAttribute Message message) {
+		MessageJDBC messageJdbc = (MessageJDBC)getApplicationContext().getBean("messageJDBCTemplate");
+		ModelAndView productModelView = new ModelAndView();
+		
+		productModelView.setViewName("edit");
+		message = messageJdbc.getMessageById(messageID);
+		productModelView.addObject(message);
+		return productModelView;
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value="edit") 
+	public String editMessage(@RequestParam(value="id") Integer messageID, @ModelAttribute Message message) {
+		if(message.getMessageText().length() <= 0)
+		{
+			throw new InvalidInputException("Invalid Input: Blank Message");
+		}
+		
+		MessageJDBC messageJdbc = (MessageJDBC)getApplicationContext().getBean("messageJDBCTemplate");
+		Message oldmessage = messageJdbc.getMessageById(messageID);
+		oldmessage.setMessageText(message.getMessageText());
+		messageJdbc.update(oldmessage);
+		return String.format("redirect:topic#%s", messageID);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value="delete") 
+	public String deleteMessage(@RequestParam(value="id") Integer messageID) {
+		MessageJDBC messageJdbc = (MessageJDBC)getApplicationContext().getBean("messageJDBCTemplate");
+		
+		messageJdbc.delete(messageID);
 		return "redirect:topic";
 	}
 	
-	protected ArrayList<Message> organizeList(ArrayList<Message> messages)
-	{		
+	protected ArrayList<Message> organizeList(ArrayList<Message> messages) {		
 		return messages;
 	}
 	

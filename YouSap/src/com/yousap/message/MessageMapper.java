@@ -15,6 +15,7 @@ public class MessageMapper implements RowMapper<Message>{
 		message.setMessageText(resultSet.getString("message_content"));
 		message.setUsername(resultSet.getString("username"));
 		message.setDate(resultSet.getString("message_date"));
+		message.setParentMessageID(resultSet.getInt("parent_message_id"));
 		return message;
 	}
 }
