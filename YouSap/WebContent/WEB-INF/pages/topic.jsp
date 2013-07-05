@@ -68,7 +68,7 @@
 					</span>					
 					<c:if test="${iMessage.parentMessageID!='-1'}">
 						<span id="content" class="reply-header">
-							Reply To  ${iMessage.parentMessageID}
+							Reply to Msg.${iMessage.parentMessageID}
 						</span>					
 					</c:if>
 					<span class="message-text">

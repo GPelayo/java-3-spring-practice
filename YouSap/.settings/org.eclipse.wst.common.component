@@ -2,7 +2,7 @@
     <wb-module deploy-name="Yousap">
         <wb-resource deploy-path="/" source-path="/WebContent"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="java-output-path" value="/YouSap/build/classes"/>
+        <property name="java-output-path" value="/Yousap/build/classes"/>
         <property name="context-root" value="Yousap"/>
     </wb-module>
 </project-modules>
