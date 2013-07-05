@@ -16,7 +16,8 @@ import com.yousap.message.*;
 @Controller
 public class MessageController extends AbstractController{
 	ArrayList<Message> messageList = new ArrayList<Message>();
-	
+	String lastUsedName = "";
+	int postCount = 0;
 	@RequestMapping(method = RequestMethod.GET, value = "/*")
 	public String show404(){
 		//TODO Redirect to 404 page Here
@@ -26,18 +27,21 @@ public class MessageController extends AbstractController{
 	@RequestMapping(method = RequestMethod.GET, value = "/topic")
 	public ModelAndView listMessages(@ModelAttribute Message message){
 		//MessageJDBC messageJdbc = (MessageJDBC)getApplicationContext().getBean("messageJDBCTemplate");
-		//TODO Replace to Message once DB is implemented
+		message.setUsername(lastUsedName);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("topic");
 		mav.addObject("messageList", messageList /*messageJdbc.listMessages()*/);
 		mav.addObject("message", message);
 		return mav;
 	}
-	//TODO Replace to Message once DB is implemented
-	@RequestMapping(method = RequestMethod.POST, value="/topic") 
+	//TODO Redirect to Add page Notification
+	@RequestMapping(method = RequestMethod.POST, value="/add") 
 	public String saveAddedMessage(@ModelAttribute Message message) {		
 		//MessageJDBC messageJdbc = (MessageJDBC)getApplicationContext().getBean("messageJDBCTemplate");
+		lastUsedName = message.getUsername();
+		message.setMessageID(postCount); //TODO Delete When DB works
 		messageList.add(message);
+		postCount++;
 		return "redirect:topic";
 	}
 	
