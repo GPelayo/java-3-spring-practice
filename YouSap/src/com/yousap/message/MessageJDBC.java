@@ -15,26 +15,26 @@ public class MessageJDBC /*implements MessageDAO*/{
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
-	public void createNewMessage(int message, int lineNumber, int productId, int quantity, float unitPrice) {
-		String insertIntoOrders = "Insert into orderitems (order_id, line_number, product_id, quantity, unit_price) values (?, ?, ?, ?, ?)";
-		jdbcTemplate.update(insertIntoOrders, message, lineNumber, productId, quantity, unitPrice);
+	public void createNewMessage(int message, String username, String message_content, String message_date) {
+		String insertIntoOrders = "Insert into message (message_id, username, message_content, message_date) values (?, ?, ?, ?)";
+		jdbcTemplate.update(insertIntoOrders, message, username, message_content, message_date);
 	}
 
-	public Message getMessageById(Integer orderId, Integer lineNumber) {
-		String selectOrderById = String.format("Select * from orderitems where order_id = ? AND line_number=?", orderId, lineNumber);
-		Message order = jdbcTemplate.queryForObject(selectOrderById, new Object[]{orderId, lineNumber}, new MessageMapper());
-		return order;
+	public Message getMessageById(Integer message_id) {
+		String selectMessageById = String.format("Select * from message where message_id = ?", message_id);
+		Message message = jdbcTemplate.queryForObject(selectMessageById, new Object[]{message_id}, new MessageMapper());
+		return message;
 	}
 
 	public List<Message> listMessages() {
-		String selectAllMessages = "SELECT * from orderitems ORDER BY order_id DESC";
-		List<Message> orders = jdbcTemplate.query(selectAllMessages, new MessageMapper());
-		return orders;
+		String selectAllMessages = "SELECT * from message BY message_id DESC";
+		List<Message> messages = jdbcTemplate.query(selectAllMessages, new MessageMapper());
+		return messages;
 	}
 
-	public void delete(Integer orderId, Integer lineNumber) {
-		String deleteMessages = "Delete from orderitems where order_id=? AND line_number=?";
-		jdbcTemplate.update(deleteMessages, orderId, lineNumber);
+	public void delete(Integer message_id) {
+		String deleteMessages = "Delete from message where message_id=?";
+		jdbcTemplate.update(deleteMessages, message_id);
 	}
 	
 	/*
