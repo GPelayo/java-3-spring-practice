@@ -37,8 +37,9 @@ h1
 }
 #content.reply-header
 {
+	margin-left:0;
 	display:block;
-	padding-left:10px;
+	padding-left:0px;
 	width:auto;
 	height:auto;
 	margin-left:1px;
