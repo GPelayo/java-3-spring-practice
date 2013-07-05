@@ -4,8 +4,16 @@ public class Message {
 	private Integer messageID;
 	private String messageText;
 	private String username;
+	private Integer parentMessageID;
 	private String date;
+	private Integer nestLevel;
 	
+	public Integer getNestLevel() {
+		return nestLevel;
+	}
+	public void setNestLevel(Integer nestLevel) {
+		this.nestLevel = nestLevel;
+	}
 	public Integer getMessageID() {
 		return messageID;
 	}
@@ -24,13 +32,17 @@ public class Message {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	public Integer getParentMessageID() {
+		return parentMessageID;
+	}
+	public void setParentMessageID(Integer parentMessageID) {
+		this.parentMessageID = parentMessageID;
+	}
 	public String getDate() {
 		return date;
 	}
 	public void setDate(String date) {
 		this.date = date;
-	}
-	
-	
+	}	
 }
 
