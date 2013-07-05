@@ -1,8 +1,14 @@
 package com.yousap.controller;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,13 +29,13 @@ public class MessageController extends AbstractController{
 		//TODO Redirect to 404 page Here
 		return "redirect:topic";
 	}
-	
+	Date newDate =new Date(postCount);
 	@RequestMapping(method = RequestMethod.GET, value = "/topic")
 	public ModelAndView listMessages(@ModelAttribute Message message){
 		//MessageJDBC messageJdbc = (MessageJDBC)getApplicationContext().getBean("messageJDBCTemplate");
 		message.setUsername(lastUsedName);
+		message.setParentMessageID(-1);
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("topic");
 		mav.addObject("messageList", messageList /*messageJdbc.listMessages()*/);
 		mav.addObject("message", message);
 		return mav;
@@ -38,8 +44,10 @@ public class MessageController extends AbstractController{
 	@RequestMapping(method = RequestMethod.POST, value="/add") 
 	public String saveAddedMessage(@ModelAttribute Message message) {		
 		//MessageJDBC messageJdbc = (MessageJDBC)getApplicationContext().getBean("messageJDBCTemplate");
+		//DateTime date = new Date(Calendar.getInstance().getTimeInMillis());
 		lastUsedName = message.getUsername();
 		message.setMessageID(postCount); //TODO Delete When DB works
+		message.setDate(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(Calendar.getInstance().getTime()));
 		messageList.add(message);
 		postCount++;
 		return "redirect:topic";

@@ -7,7 +7,7 @@
 <html>
 <head>
 	<title>Yousap</title>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/RES/css/topic.css"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/RES/css/green.css"/>
 </head>
 <body>	
 <div id="content" style="margin-bottom:30px;">
@@ -36,6 +36,14 @@
 				</td>
 			</tr>
 			<tr>
+				<td>
+					No Reply
+				</td>
+				<td>
+					<form:radiobutton path="parentMessageID" value="-1"/>
+				</td>
+			</tr>
+			<tr>
 				<td colspan="2" style="text-align:center;border-bottom-width:0">							
 					<input class="button" type="submit" value="Save" formaction="add"/>	
 				</td>
@@ -46,17 +54,23 @@
 		<c:forEach items="${messageList}" var="iMessage">
 			<div>				
 				<span id="content" class="message">
-					<span id="content" class="message-data">
-						<span class="username">
+					<span id="content" class="message-header">						
+						<span class="username">							
+							<form:radiobutton path="parentMessageID" value="${iMessage.messageID}"/>
 							${iMessage.username}
 						</span>
 						<span>
-							Message #:${iMessage.messageID}
+							Msg. ${iMessage.messageID}
 						</span>
-					</span>
-					<span id="content" class="reply-data">
-						Reply To <!-- ${iMessage.parentMessageID} ${iMessage.date} -->
-					</span>
+						<span>
+							 [${iMessage.date}]
+						</span>
+					</span>					
+					<c:if test="${iMessage.parentMessageID!='-1'}">
+						<span id="content" class="reply-header">
+							Reply To  ${iMessage.parentMessageID}
+						</span>					
+					</c:if>
 					<span class="message-text">
 						${iMessage.messageText}
 					</span>

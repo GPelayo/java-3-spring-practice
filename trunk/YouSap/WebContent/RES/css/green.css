@@ -23,7 +23,7 @@ h1
 {
 	display:inline-block;
 }
-#content.message-data
+#content.message-header
 {
 	display:block;
 	padding-top:5px;
@@ -35,7 +35,7 @@ h1
 	background-color:#82BF82;
 	border-style:none; 
 }
-#content.reply-data
+#content.reply-header
 {
 	display:block;
 	padding-left:10px;
