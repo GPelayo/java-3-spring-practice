@@ -2,6 +2,10 @@ package com.yousap.controller;
 
 public class BlankFieldException extends RuntimeException {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String exceptionMsg;
 	 
 	public BlankFieldException(String exceptionMsg) {
