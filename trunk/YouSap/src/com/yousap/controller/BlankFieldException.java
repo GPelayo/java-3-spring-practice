@@ -1,10 +1,10 @@
 package com.yousap.controller;
 
-public class Exceptions extends RuntimeException {
+public class BlankFieldException extends RuntimeException {
 	
 	private String exceptionMsg;
 	 
-	public Exceptions(String exceptionMsg) {
+	public BlankFieldException(String exceptionMsg) {
 		this.exceptionMsg = exceptionMsg;
 	}
 	

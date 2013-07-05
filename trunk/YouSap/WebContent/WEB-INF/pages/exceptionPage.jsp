@@ -11,7 +11,7 @@
 
 <h1>This is the exception handler</h1>
 
-<h2>${exception.exceptionMsg}</h2>
+<h2>${BlankFieldException.exceptionMsg}</h2>
 
 
 
