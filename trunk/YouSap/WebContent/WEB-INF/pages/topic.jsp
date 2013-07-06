@@ -11,14 +11,14 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/RES/css/green.css"/>
 </head>
 <body>	
-<div id="content" style="margin-bottom:30px;">
+<div class="content" style="margin-bottom:30px;">
 	<h1>
 		Yousap
 	</h1>
 </div>
 <form:form commandName="message" method="POST">
 	<div id="message-box">
-		<table id="content" style="text-align:left">	
+		<table id="message-box" class="content" style="text-align:left">	
 			<tr>
 				<td>
 					Username
@@ -32,7 +32,7 @@
 					Message
 				</td>
 				<td>
-					<form:textarea rows="4" path="messageText" maxlength="5000"/>
+					<form:textarea rows="6" path="messageText" style="width:95%;" maxlength="5000"/>
 				</td>
 			</tr>
 			<tr>
@@ -59,8 +59,8 @@
 				<c:if test="${iMessage.messageID != highlightID}">
 						<c:set var="highlightStyle" value="background-color:#BFB541;"/>
 				</c:if>				
-				<span id="content" class="message" style="${highlightStyle}">
-					<span id="content" class="message-header">						
+				<span id="message" class="content" style="${highlightStyle}">
+					<span id="message-header" class="content">						
 						<span class="username">							
 							<form:radiobutton id="radiobutton" path="parentMessageID" value="${iMessage.messageID}"/>
 							${iMessage.username}
@@ -75,7 +75,7 @@
 					</span>
 					<fmt:parseNumber var="nullID" value="-1" />		
 					<c:if test="${iMessage.parentMessageID > nullID}">					
-						<span id="content" class="reply-header">
+						<span id="reply-header" class="content">
 							<a href="highlight?parentID=${iMessage.parentMessageID}#${iMessage.parentMessageID}"> 
 								Replying to Msg.${iMessage.parentMessageID}
 							</a>
@@ -85,7 +85,7 @@
 					<span class="message-text">
 						${iMessage.messageText}
 					</span>
-					<span id="content" class="button-footer">
+					<span id="button-footer" class="content">
 						<a class="button" href="edit?id=${iMessage.messageID}">Edit</a>				
 						<input class="button" type="submit" value="Delete" formaction="delete?id=${iMessage.messageID}"/>	
 					</span>
