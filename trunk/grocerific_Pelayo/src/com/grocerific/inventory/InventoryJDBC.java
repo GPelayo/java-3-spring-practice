@@ -40,7 +40,7 @@ public class InventoryJDBC implements InventoryDAO{
 
 	@Override
 	public void update(Inventory inventory) {
-		String updateInventory = String.format("UPDATE inventory SET product_id=?, quantity=?");
-		jdbcTemplate.update(updateInventory, inventory.getProductId(), inventory.getQuantity());
+		String updateInventory = String.format("UPDATE inventory SET quantity=? WHERE product_id=?");
+		jdbcTemplate.update(updateInventory, inventory.getQuantity(), inventory.getProductId());
 	}
 }
