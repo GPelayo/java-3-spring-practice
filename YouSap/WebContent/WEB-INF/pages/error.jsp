@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<div id="content" class="error">
+<div id="error" class="content">
 	<h2>Someone made an oopsies.</h2>
 	<h1>I don't even what you did, get the webmaster bro.</h1>
 	<a class="return" href="topic">Go Back</a>

@@ -11,14 +11,14 @@
 		<title>Editing Message ${message.messageID}</title>
 	</head>
 	<body>
-		<div id="content" style="margin-bottom:30px;">
+		<div class="content" style="margin-bottom:30px;">
 			<h1>
 				Editing Message ${message.messageID}
 			</h1>
 		</div>
 		<form:form commandName="message" method="POST">
 		<div>
-				<table id="content" style="text-align:left">	
+				<table class="content" style="text-align:left">	
 					<tr>
 						<td>
 							Username:

@@ -100,7 +100,7 @@ td.button-footer
 {
 	margin:0px;
 }
-#content
+.content
 {
 	margin-bottom:10px;
 	border-width:1;
@@ -110,13 +110,13 @@ td.button-footer
 	margin-right: auto;
 	margin-down:10px;
 }
-#content.message
+#message.content
 {
 	margin-left: 0px;
 	display:inline-block;
 	max-width: 60%;
 }
-#content.message-header
+#message-header.content
 {
 	display:block;
 	padding-top:5px;
@@ -129,7 +129,7 @@ td.button-footer
 	background-color:#82BF82;
 	border-style:none; 
 }
-#content.reply-header
+#reply-header.content
 {
 	display:inline;
 	display:block;
@@ -142,7 +142,7 @@ td.button-footer
 	background-color:#79B379;
 	text-align:left;
 }
-#content.button-footer
+#button-footer.content
 {
 	display:block;
 	padding-top:3px;
@@ -155,13 +155,9 @@ td.button-footer
 	border-style:none;
 	text-align:right;
 }
-#content.error
-{
-	margin-top:50%;
-}
 #message-box
 {	
 	position:fixed;
 	right:5%;
+	width:30%;
 }
-
