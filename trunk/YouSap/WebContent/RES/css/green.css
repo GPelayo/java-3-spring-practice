@@ -1,6 +1,27 @@
+a:LINK
+{
+	color:yellow;
+}
+a:VISITED
+{
+	color:green;
+}
+a:VISITED.button
+{
+	color:white
+}
+a:LINK.button
+{
+	color:white
+}
 a.button
 {
 	padding: 7px 10px 6px;
+}
+a.return
+{
+	margin-top:10px;
+	text-align:center;
 }
 body
 {
@@ -13,9 +34,9 @@ h1
 	margin:0px;	
 	text-align:center;
 }
-h2.errormsg
+h2
 {
-	color:red;
+	margin-left:5px;
 }
 input.button
 {

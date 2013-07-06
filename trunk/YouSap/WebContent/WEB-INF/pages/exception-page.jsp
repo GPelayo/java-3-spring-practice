@@ -10,7 +10,9 @@
 <body>
 
 <div id="content" class="error">
+	<h2>Someone made an oopsies.</h2>
 	<h1>${exception.exceptionMsg}</h1>
+	<a class="return" href="topic">Go Back</a>
 </div>
 </body>
 </html>
